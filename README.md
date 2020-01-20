@@ -1,0 +1,1 @@
+# woocommerce-remove-customer-details
