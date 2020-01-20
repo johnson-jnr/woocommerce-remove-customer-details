@@ -30,8 +30,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 	add_action( 'woocommerce_thankyou', 'wrcds_remove_customer_details_from_email', 10, 1);
 	function wrcds_remove_customer_details_from_email($order_id) {
-    $order = new WC_Order($order_id);
-
+    		
+		$order = new WC_Order($order_id);
 		$new_order_email = WC()->mailer()->get_emails()['WC_Email_New_Order'];
 		if ($new_order_email->get_option('enabled') == 'yes') {
 			$keys = array('email', 'phone');
@@ -39,8 +39,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			foreach($keys as $key) {
 				$val = $new_order_email->get_option($key);
 				if ($val == 'yes') {
-						$func = 'set_billing_' . $key;
-						$order->$func('');
+					$func = 'set_billing_' . $key;
+					$order->$func('');
 				}
 			}
 
@@ -59,9 +59,9 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			'type'	=>	'title'];
 
 		$form_fields['email_to'] = [
-			'title'				=>	'Recipient(s)',
-			'type'				=>	'text',
-			'description' =>	'Enter recipients (comma separated) to remove customer details from sent emails',
+			'title'			=>	'Recipient(s)',
+			'type'			=>	'text',
+			'description' 		=>	'Enter recipients (comma separated) to remove customer details from sent emails',
 			'desc_tip' 		=> 	 true];
 			
 		$form_fields['email'] = [
